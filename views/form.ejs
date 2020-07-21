@@ -1,0 +1,22 @@
+<%- include('includes/head.ejs') %>
+
+</head>
+
+<%- include('includes/navigation.ejs') %>
+
+<br>
+<br>
+
+
+
+        <form action="/addPost" method="POST">
+            <input type="text" placeholder="title" name="headline">
+            <br>
+            <br>
+            <textarea name="story" rows=20 cols=100 placeholder="mainBody"></textarea>
+            <br>
+            <button type="submit">post</button>
+        </form>
+    </div>
+</body>
+</html>

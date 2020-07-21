@@ -1,0 +1,37 @@
+
+    
+
+<body>
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Test Forum</a>
+      
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <sapn class="icon-bar"></sapn>
+            </button>
+          </div>
+          <ul class="nav navbar-nav navbar-right collapse navbar-collapse">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="/showPost">All Posts</a></li>
+            <li><a href="/addPost">Add Post</a></li>
+            <% if(!isLoggedin) { %>
+            <li><a href="/login">Login</a></li>
+            <% }else { %>
+            <li><a href="/logout">Logout</a></li>
+            <% } %>
+          </ul>
+        </div>
+      </nav>
+      
+      <div class="container">
+        <h3>Test Page to Add Post</h3>
+        <p>please write your post in the form below</p>
+      
+
+
+
+

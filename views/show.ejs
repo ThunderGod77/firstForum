@@ -1,0 +1,29 @@
+<%- include('includes/head.ejs') %>
+</head>
+<%- include('includes/navigation.ejs') %>
+
+    <h1>all posts</h1>
+    <div>
+    <% for(let a of data) { %>
+        <div>
+            <h3><a href="/post/<%=a._id%>"><%=a.title %></a></h3>
+            <br>
+            
+            <p><%= a.story%></p>
+            <br>
+            <p><%=a.user %></p>
+
+            
+            <br>
+            
+        </div>
+        <% } %>
+    </div>
+
+
+
+
+
+
+</body>
+</html>

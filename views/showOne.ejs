@@ -1,0 +1,62 @@
+<%- include('includes/head.ejs') %>
+    <script src="https://use.fontawesome.com/858c50c35d.js"></script>
+</head>
+<%- include('includes/navigation.ejs') %>
+
+    <div>
+    <h2><%=data.title %></h2>
+    <br>
+    <p><%= data.story %></p>
+    <br>
+    <p>Author <%=data.user %></p>
+    <div style="display: flex;" >
+        <div id="upvote" > <%=data.upvotes %> </div>&nbsp;&nbsp;<div onclick="upvote(this,'<%=data._id%>')">    <i class="fa fa-arrow-up"></i></div>&nbsp;&nbsp;&nbsp;
+        <div id="downvote" > <%=data.downvotes %> </div>&nbsp;&nbsp;<div onclick="downvote(this,'<%=data._id%>')">    <i class="fa fa-arrow-down"></i></div>
+    </div>
+
+    <div>
+        <h4>Comments</h4>
+        <br>
+        <div>
+        <% for(let b of data.comments) { %>
+            <p><%=b %></p>
+        <% } %>
+        </div>
+    </div>
+
+    <div>
+        <h4>Add Comments</h4>
+        <form action="/addComment" method="post">
+            <input type="hidden" name="postId" value="<%=data._id%>">
+            <input type="text" name="comm" id="lol">
+            <br>
+            <button type="submit">post</button>
+        
+        </form>
+    </div>
+
+
+
+    </div>
+
+
+
+    <script src="/js/main.js"></script>
+</body>
+
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
