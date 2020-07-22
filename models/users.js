@@ -1,6 +1,12 @@
 const bcryptjs = require('bcryptjs');
-
-
+const nodeMail = require('nodemailer')
+const nodeMailSend = require('nodemailer-sendgrid-transport');
+const transporter = nodeMail.createTransport(nodeMailSend({
+    auth:{
+        api_key:'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 '
+    }
+})
+)
 var mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://senna:Topa@123@cluster0.lje24.mongodb.net/proj1?retryWrites=true&w=majority',{ useNewUrlParser: true } );
 
@@ -19,10 +25,18 @@ const User = mongoose.model('User', userScema);
 
 const saveUser = (email,password,username,cb)=>{
     const newUser = new User({email:email,password:password,username:username});
+
     newUser.save(function(err,nu){
         if(err){
             console.error(err);
         }
+        transporter.sendMail({
+            to:email,
+            from:'kshitijgang76@gmail.com',
+            subject:'Sign up successfull',
+            html:'<h1>You have created an account at the test forum!</h1>'
+
+        });
         console.log(nu.email+" registered");
     });
     cb();
