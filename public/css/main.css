@@ -1,0 +1,44 @@
+.singlePost{
+    background-color: whitesmoke;
+    margin: 10px;
+    padding: 10px;
+}
+
+.mainPost{
+    word-wrap: break-word;
+    font-size: 1.75rem;
+}
+
+.title{
+    font-size: 3rem;
+}
+
+.author{
+    font-size: 1rem;
+}
+.container{
+    
+    align-items: center;
+    margin: auto;
+    padding: 20px;
+    align-content: center;
+}
+
+.pageControl{
+    text-align: center;
+    margin: auto;
+}
+.pageControl a{
+    text-decoration: none;
+    padding: 10px;
+    
+}
+.pageControl a:hover {
+    background-color: black;
+    color: white;
+  }
+
+.active{
+    background-color: gray;
+    color: white;
+}

@@ -1,17 +1,18 @@
 <%- include('includes/head.ejs') %>
+<link rel="stylesheet" href="/css/main.css">
 </head>
 <%- include('includes/navigation.ejs') %>
 
     <h1>all posts</h1>
-    <div>
+    <div class="allPosts">
     <% for(let a of data) { %>
-        <div>
-            <h3><a href="/post/<%=a._id%>"><%=a.title %></a></h3>
+        <div class="singlePost">
+            <h3 class='title'><a href="/post/<%=a._id%>"><%=a.title %></a></h3>
             <br>
             
-            <p><%= a.story%></p>
-            <br>
-            <p><%=a.user %></p>
+            <p class="mainPost"><%= a.story%></p>
+            
+            <p class="author"><%=a.user %></p>
 
             
             <br>
@@ -19,7 +20,22 @@
         </div>
         <% } %>
     </div>
+    <div class="container">
+        <section class="pageControl">
+            <% if (currentPage !== 1 && prevPage !== 1) { %>
+                <a href="?page=1">1</a>
+            <% } %>
+            <% if(currentPage!==1) { %>
+            <a href="?page=<%= prevPage %>" ><%= prevPage %></a>
+            <% } %>
+            <a href="?page=<%= currentPage %>" class="active"><%= currentPage %></a>
+            <% if(numPages!==currentPage){ %>
+            <a href="?page=<%= nextPage %>" ><%= nextPage %></a>
+            <%}%>
+            
+        </section>
 
+    </div>
 
 
 

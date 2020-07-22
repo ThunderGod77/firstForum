@@ -25,13 +25,18 @@ const savePost = (ti,story,u,cb)=>{
     cb();
 }
 
-const showPost = (cb)=>{
-    Post.find({}).sort({upvotes:-1}).exec((err,posts)=>{
-        if(err){
-            console.error(err);
-        }
-        cb(posts);
+const showPost = (page,cb)=>{
+    
+    Post.find().countDocuments().then(numPosts=>{
+        Post.find({}).sort({upvotes:-1}).skip((page-1)*10).limit(10).exec((err,posts)=>{
+            if(err){
+                console.error(err);
+            }
+            cb(posts,page,numPosts);
+        })
     })
+
+    
 }
 
 const showPostOne = (postId,cb)=>{

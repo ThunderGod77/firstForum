@@ -7,14 +7,18 @@ mongoose.connect('mongodb+srv://senna:Topa@123@cluster0.lje24.mongodb.net/proj1?
 const db = mongoose.connection;
 
 const userScema = new mongoose.Schema({
+    username:{type:String,unique: true},
     email:{type:String,unique: true},
     password:String,
+    upvotesReceived: { type: Number, default: 0 },
+    coins:{ type: Number, default: 0 },
+
 });
 
 const User = mongoose.model('User', userScema);
 
-const saveUser = (email,password,cb)=>{
-    const newUser = new User({email:email,password:password});
+const saveUser = (email,password,username,cb)=>{
+    const newUser = new User({email:email,password:password,username:username});
     newUser.save(function(err,nu){
         if(err){
             console.error(err);
