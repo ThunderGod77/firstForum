@@ -144,7 +144,43 @@ app.post('/downvote',(req,res,next)=>{
     
 })
 
+app.get('/reset',(req,res)=>{
+    if(req.session.isLoggedin){
+        return res.redirect('/login');
+    }
+    res.render('reset');
+})
 
+app.post('/reset',(req,res,next)=>{
+    const email = req.body.email;
+    userHandler.reset(email,()=>{
+        res.redirect('/login');
+    });
+})
+
+app.get('/resetPassword/:token',(req,res,next)=>{
+    const token = req.params.token;
+    userHandler.rsr(token,()=>{
+        res.redirect('/login');
+    },(user)=>{
+        
+        res.render('resetForm',{'email':user.email,'token':user.token,})
+    })
+})
+app.post('/resetPassword',(req,res)=>{
+    const email = req.body.email;
+    const token = req.body.token;
+    const password = req.body.password;
+    console.log(email);
+    console.log(token);
+    const cb = ()=>{
+        res.redirect('/login');
+    }
+    const errcb = ()=>{
+        res.redirect('/register');
+    }
+    userHandler.newPassword(email,token,password,cb,errcb);
+})
 
 
 

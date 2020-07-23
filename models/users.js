@@ -1,13 +1,16 @@
+const crypto = require('crypto');
 const bcryptjs = require('bcryptjs');
 const nodeMail = require('nodemailer')
 const nodeMailSend = require('nodemailer-sendgrid-transport');
 const transporter = nodeMail.createTransport(nodeMailSend({
     auth:{
-        api_key:'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 '
+        api_key:''
     }
 })
 )
+// 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 
 var mongoose = require('mongoose');
+const { strict } = require('assert');
 mongoose.connect('mongodb+srv://senna:Topa@123@cluster0.lje24.mongodb.net/proj1?retryWrites=true&w=majority',{ useNewUrlParser: true } );
 
 const db = mongoose.connection;
@@ -18,6 +21,8 @@ const userScema = new mongoose.Schema({
     password:String,
     upvotesReceived: { type: Number, default: 0 },
     coins:{ type: Number, default: 0 },
+    token:String,
+    tokenExpiry:Date,
 
 });
 
@@ -58,7 +63,7 @@ const login = (req,res,next)=>{
         req.session.user = user;
         res.redirect('/addPost')
     })
-}
+};
 
 
 
@@ -80,6 +85,77 @@ const userOne = (email,cb)=>{
     })
 }
 
+const resetPassword = (email,cb)=>{
+    var token;
+    User.findOne({email:email})
+    .then(userReset=>{
+        console.log(userReset.email);
+        crypto.randomBytes(32,(err,buffer)=>{
+            if(err){
+                cb();
+            }
+            else{
+                token = buffer.toString('hex');
+                transporter.sendMail({
+                    to:email,
+                    from:'kshitijgang76@gmail.com',
+                    subject:'You have requested to reset your password.',
+                    html:`<p>You have requested to reset the password</p>
+                            <p>To reset click <a href="http://localhost:8080/resetPassword/${token}">here</a></p>`
+                }).then(err=>{
+                    console.log(err);
+                    userReset.token = token;
+                    userReset.tokenExpiry=Date.now()+3600000;
+                    return userReset.save();
+                    
+                }).then(result=>{cb();})
+            }
+        })
+        
+        
+    })
+    .catch(err=>{
+        console.log(err);
+        cb();
+    })
+}
+
+const resetPasswordRenderer = (token,errcb,con)=>{
+    User.findOne({'token':token,'tokenExpiry':{$gt:Date.now()}})
+    .then(user=>{
+        if(!user){
+            return errcb();
+        }
+        con(user);
+    })
+    .catch(err=>{
+        console.log(err);
+        errcb();
+    })
+}
+
+const newPassword = (email,token,password,cb,errcb)=>{
+    User.findOne({'token':token,email:email,'tokenExpiry':{$gt:Date.now()}})
+    .then(user=>{
+        if(!user){
+            return errcb();
+        }
+        user.password = password;
+        user.token=undefined;
+        user.tokenExpiry=undefined;
+        user.save().then(result=>{
+            cb();
+        })
+        .catch(err=>{
+            console.log(err);
+            return errcb();
+        })
+    })
+    .catch(err=>{
+        console.log(err);
+        errcb();
+    })
+}
 // const addComment = (postId,comm,cb)=>{
 //     Post.updateOne(
 //         { _id: postId },
@@ -126,3 +202,6 @@ const userOne = (email,cb)=>{
 exports.login = login;
 exports.saveUser = saveUser;
 exports.findUser = userOne;
+exports.reset = resetPassword;
+exports.rsr= resetPasswordRenderer;
+exports.newPassword=newPassword;

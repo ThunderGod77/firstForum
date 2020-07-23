@@ -1,0 +1,16 @@
+<%- include('includes/head.ejs') %>
+</head>
+<%- include('includes/navigation.ejs') %>
+
+    <h1>Enter new password</h1>
+    <br>
+    <form action="/resetPassword" method="POST">
+        <input type="password" placeholder="password" name="password">
+        <br>
+        <input type="hidden" name="token" value="<%= token%>">
+        <input type="hidden" name="email" value="<%= email%>">
+        <br>
+    <button type="submit">Reset Password</button>
+    </form>
+</body>
+</html>
