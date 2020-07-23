@@ -202,6 +202,7 @@ const newPassword = (email,token,password,cb,errcb)=>{
 exports.login = login;
 exports.saveUser = saveUser;
 exports.findUser = userOne;
+
 exports.reset = resetPassword;
 exports.rsr= resetPasswordRenderer;
 exports.newPassword=newPassword;
