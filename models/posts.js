@@ -1,10 +1,10 @@
+const dotenv = require("dotenv");
+dotenv.config();
+
 var userhandler = require("./users.js");
 
 var mongoose = require("mongoose");
-mongoose.connect(
-  "mongodb+srv://senna:Topa@123@cluster0.lje24.mongodb.net/proj1?retryWrites=true&w=majority",
-  { useNewUrlParser: true }
-);
+mongoose.connect(process.env.CONNECTIONSTRING, { useNewUrlParser: true });
 
 const db = mongoose.connection;
 

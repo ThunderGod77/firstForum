@@ -1,3 +1,6 @@
+const dotenv = require("dotenv");
+dotenv.config();
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
@@ -8,8 +11,7 @@ const postHandler = require("./models/posts");
 const userHandler = require("./models/users");
 
 const store = new mongoDBstore({
-  uri:
-    "mongodb+srv://senna:Topa@123@cluster0.lje24.mongodb.net/proj1?retryWrites=true&w=majority",
+  uri: process.env.CONNECTIONSTRING,
   collection: "sessions",
 });
 

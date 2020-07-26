@@ -1,3 +1,6 @@
+const dotenv = require("dotenv");
+dotenv.config();
+
 const crypto = require("crypto");
 const bcryptjs = require("bcryptjs");
 const nodeMail = require("nodemailer");
@@ -5,18 +8,14 @@ const nodeMailSend = require("nodemailer-sendgrid-transport");
 const transporter = nodeMail.createTransport(
   nodeMailSend({
     auth: {
-      api_key:
-        "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 ",
+      api_key: process.env.EMAILAPI,
     },
   })
 );
 // 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
 var mongoose = require("mongoose");
 const { strict } = require("assert");
-mongoose.connect(
-  "mongodb+srv://senna:Topa@123@cluster0.lje24.mongodb.net/proj1?retryWrites=true&w=majority",
-  { useNewUrlParser: true }
-);
+mongoose.connect(process.env.CONNECTIONSTRING, { useNewUrlParser: true });
 
 const db = mongoose.connection;
 
