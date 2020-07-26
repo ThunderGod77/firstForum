@@ -1,0 +1,50 @@
+<%- include('includes/head.ejs') %>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/home.css">
+
+</head>
+<%- include('includes/navigation.ejs') %>
+
+<div class="searchb">
+    <form action="/search" method="POST">
+    <input type="text" name="tag" id="tag" placeholder="search by tag">
+    <button type="submit">Search</button>
+    </form>
+</div>
+
+
+<div class="searchb">
+    <h2>User Info</h2>
+    <p><%=user.username%></p>
+    <br>
+    
+    <p><%=user.email%></p>
+    <br>
+    <p>Upvotes : <%=user.upvotesReceived%></p>
+    <br>
+    
+    <% if(user.upvotesReceived > 1000) {%>
+        <h3 style="color: gold;">Gold Medal</h3>
+    <%} else if(user.upvotesReceived > 500){%>
+        <h3 style="color: silver;">Silver Medal</h3>
+    <%} else {%>
+        <h3 style="color: brown;">Bronze Medal</h3>
+    <%}%>
+
+
+</div>
+
+<br>
+<div class="searchb">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem est quis, aut natus aliquam autem, eveniet nulla fugit quos repellendus impedit quam odit. Sapiente, doloribus error. Quasi earum at perferendis?
+    <br>
+    <br>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate molestias libero laudantium eius, totam error cumque quas nulla saepe quibusdam, ducimus rem voluptatum suscipit expedita atque, quos aperiam dolor tempore.
+    <br>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, ducimus voluptates! Consectetur, veniam. Explicabo sed iusto tempore veniam mollitia, nostrum delectus unde sapiente vero quos soluta repellat quas distinctio assumenda.
+</div>
+
+
+
+</body>
+</html>

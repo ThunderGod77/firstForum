@@ -1,0 +1,45 @@
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Control the left side */
+.left {
+  left: 0;
+  background-color: whitesmoke;
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+  background-color: gray;
+  color: black;
+}
+
+.right a {
+  font-size: xx-large;
+  color: aliceblue;
+}
+
+/* If you want the content centered horizontally and vertically */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.searchb {
+  padding: 7px;
+  margin: 20px;
+}

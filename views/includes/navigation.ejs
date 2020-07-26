@@ -1,63 +1,65 @@
-
-    
-
 <body>
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">Test Forum</a>
-      
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <sapn class="icon-bar"></sapn>
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">Test Forum</a>
+
+        <button
+          type="button"
+          class="navbar-toggle"
+          data-toggle="collapse"
+          data-target=".navbar-collapse"
+        >
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <sapn class="icon-bar"></sapn>
+        </button>
+      </div>
+      <ul class="nav navbar-nav navbar-right collapse navbar-collapse">
+        <li class="active"><a href="/">Home</a></li>
+        <li><a href="/showPost">All Posts</a></li>
+        <li><a href="/addPost">Add Post</a></li>
+        <% if(!isLoggedin) { %>
+        <li>
+          <a href="#" data-toggle="modal" data-target="#myModal">Login</a>
+        </li>
+        <% }else { %>
+        <li><a href="/logout">Logout</a></li>
+        <% } %>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h3>Test Forum</h3>
+
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+            <h4 class="modal-title">Test Forum</h4>
+          </div>
+          <div
+            class="modal-body"
+            style="align-items: center; text-align: center;"
+          >
+            <a href="/login" class="loj">Login</a>
+            <br />
+            <br />
+            <a href="/register" class="loj">Register</a>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              Close
             </button>
           </div>
-          <ul class="nav navbar-nav navbar-right collapse navbar-collapse">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="/showPost">All Posts</a></li>
-            <li><a href="/addPost">Add Post</a></li>
-            <% if(!isLoggedin) { %>
-            <li><a href="#" data-toggle="modal" data-target="#myModal">Login</a></li>
-            <% }else { %>
-            <li><a href="/logout">Logout</a></li>
-            <% } %>
-          </ul>
         </div>
-      </nav>
-      
-      <div class="container">
-        <h3>Test Forum</h3>
-        
-      
-
-
-
-        
-        <div class="modal fade" id="myModal" role="dialog">
-          <div class="modal-dialog">
-          
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Test Forum</h4>
-              </div>
-              <div class="modal-body" style="align-items: center;text-align: center;">
-                <a href="/login" class="loj">Login</a>
-                <br>
-                <br>
-                <a href="/register" class="loj">Register</a>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-
-
-
-
+      </div>
+    </div>
+  </div>
+</body>

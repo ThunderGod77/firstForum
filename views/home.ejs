@@ -1,0 +1,45 @@
+<%- include('includes/head.ejs') %>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/home.css">
+</head>
+<%- include('includes/navigation.ejs') %>
+
+<div class="split left">
+    <div class="centered">
+        <h1>Login</h1>
+        <br>
+        <form action="/login" method="POST">
+            <input type="text" placeholder="email" name="username">
+            <br>
+            <br>
+    
+            <input type="password" name="passw" placeholder="enter password">
+            <br>
+            <br>
+            <button type="submit">login</button>
+    
+            
+        </form>
+        <br>
+        <br>
+        
+        <div>
+            <a href="/reset">Forgot Password ?</a>
+        </div>
+    </div>
+  </div>
+  
+  <div class="split right">
+    <div class="centered">
+        <a href="/register">Create a new account</a>
+        <h3>Join our exciting community of fellow coders!</h3>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat quasi excepturi ducimus cumque labore quam nihil recusandae temporibus beatae pariatur eum ratione atque corporis fuga, id dolores eligendi accusantium quia!</p>
+    </div>
+  </div> 
+
+
+
+
+
+</body>
+</html>
