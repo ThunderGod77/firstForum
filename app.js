@@ -207,6 +207,8 @@ app.get("/", (req, res, next) => {
   }
 });
 
-app.listen(5000);
+app.listen(process.env.PORT || 3000, function () { 
+  console.log("SERVER STARTED PORT: 3000"); 
+}
 
 //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
